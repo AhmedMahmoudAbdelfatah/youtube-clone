@@ -15,10 +15,11 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { AccountCircleOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: clamp(180px, 30vw, 208px);
-  background-color: ${({theme}) => theme.backGround};
+  background-color: ${({theme}) => theme.backGroundLighter};
   height: 100vh;
   color: ${({theme}) => theme.text};
   font-size: 14px;
@@ -31,7 +32,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 18px 26px; 
+  padding: 18px 15px; 
 `;
 
 const Logo = styled.div`
@@ -51,7 +52,12 @@ const Item = styled.div`
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  padding: 7.5px 0;
+  padding: 7.5px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: ${({theme}) => theme.backGround};
+  }
 `;
 
 const Hr = styled.hr`
@@ -86,10 +92,12 @@ export const Menu = (props) => {
   return (
     <Container>
       <Wrapper>
-        <Logo>
-          <Img src="img/logo.png"/>
-          Youtube
-        </Logo>
+        <Link to={`/`} style={{ textDecoration: "none", color: "inherit"}}>
+          <Logo>
+            <Img src="img/logo.png"/>
+            Youtube
+          </Logo>
+        </Link>
         <Item>
           <HomeIcon />
           Home
@@ -114,9 +122,11 @@ export const Menu = (props) => {
         <Hr />
         <Login>
           Sign in to like videos, comments and subscribe.
-          <Button>
-            <AccountCircleOutlined /> Sign in
-          </Button>
+          <Link to={`/signin`} style={{ textDecoration: "none", color: "inherit" }}>
+            <Button>
+              <AccountCircleOutlined /> Sign in
+            </Button>
+          </Link>
         </Login>
         <Hr />
         <Title>Explore</Title>
@@ -159,7 +169,7 @@ export const Menu = (props) => {
         </Item>
         <Item onClick={() => props?.setDarkMode((prev) => !prev)}>
           <SettingsBrightnessOutlinedIcon />
-          Light Mode
+          {props.darkMode?  "Light" : "Dark"} Mode
         </Item>
       </Wrapper>
     </Container>
