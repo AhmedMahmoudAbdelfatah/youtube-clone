@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Video } from './pages/Video';
 import { Home } from './pages/Home';
 import { Signin } from './pages/Signin';
+import { Search } from './pages/Search';
 
 const Container = styled.div`
   display: flex;
@@ -32,9 +33,12 @@ function App() {
           <Navbar />
           <Wrapper>
             <Routes>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<Home type="random"/>} />
+              <Route path='/trend' element={<Home type="trend"/>} />
+              <Route path='/sub' element={<Home type="sub"/>} />
               <Route path='/video/:id' element={<Video />} />
               <Route path='/signin' element={<Signin />} />
+              <Route path='/search' element={<Search />} />
             </Routes>
           </Wrapper>
         </Main>

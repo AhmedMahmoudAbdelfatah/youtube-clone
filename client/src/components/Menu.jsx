@@ -16,6 +16,7 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { AccountCircleOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: clamp(180px, 30vw, 208px);
@@ -89,6 +90,8 @@ const Title = styled.h2`
 `
 
 export const Menu = (props) => {
+  const user = useSelector(state => state.user.data);
+  
   return (
     <Container>
       <Wrapper>
@@ -98,18 +101,24 @@ export const Menu = (props) => {
             Youtube
           </Logo>
         </Link>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
-        <Item>
-          <ExploreOutlinedIcon />
-          Explore
-        </Item>
-        <Item>
-          <SubscriptionsOutlinedIcon />
-          Subscriptions
-        </Item>
+        <Link to={`/`} style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <HomeIcon />
+            Home
+          </Item>
+        </Link>
+        <Link to={`/trend`} style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <ExploreOutlinedIcon />
+            Explore
+          </Item>
+        </Link>
+        <Link to={`/sub`} style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <SubscriptionsOutlinedIcon />
+            Subscriptions
+          </Item>
+        </Link>
         <Hr />
         <Item>
           <VideoLibraryOutlinedIcon />
@@ -120,15 +129,19 @@ export const Menu = (props) => {
           History
         </Item>
         <Hr />
-        <Login>
-          Sign in to like videos, comments and subscribe.
-          <Link to={`/signin`} style={{ textDecoration: "none", color: "inherit" }}>
-            <Button>
-              <AccountCircleOutlined /> Sign in
-            </Button>
-          </Link>
-        </Login>
-        <Hr />
+        {!user &&
+          <>
+          <Login>
+            Sign in to like videos, comments and subscribe.
+            <Link to={`/signin`} style={{ textDecoration: "none", color: "inherit" }}>
+              <Button>
+                <AccountCircleOutlined /> Sign in
+              </Button>
+            </Link>
+          </Login>
+          <Hr />
+          </>
+        }
         <Title>Explore</Title>
         <Item>
           <LibraryMusicOutlinedIcon />

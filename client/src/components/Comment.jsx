@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { format } from "timeago.js";
+
 const Container = styled.div`
   display: flex;
   gap: 10px;
@@ -28,16 +32,26 @@ const Text = styled.span`
   font-size: 14px;
 `;
 
-export const Comment = () => {
+export const Comment = (props) => {
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const res = await axios.get(`/users/find/${props.comment.userId}`);
+      setChannel(res.data)
+    };
+    fetchComment();
+  }, [props.comment.userId]);
+
   return (
     <Container>
-      <Avatar />
+      <Avatar src={ channel.img } />
       <Details>
         <Name>
-          Ahmed
-          <Date>1 day ago</Date>
+          {channel.name}
+          <Date>1 {format(props?.comment?.createdAt) }</Date>
         </Name>
-        <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, inventore!</Text>
+        <Text>{ props?.comment?.desc}</Text>
       </Details>
     </Container>
   )
