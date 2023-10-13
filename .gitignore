@@ -32,6 +32,7 @@ server/yarn-error.log*
 server/pnpm-debug.log*
 server/lerna-debug.log*
 
+server/.env
 server/node_modules
 server/dist
 server/dist-ssr
