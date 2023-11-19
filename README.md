@@ -44,7 +44,7 @@ The YouTube clone project has the following features:
 To run the project locally, you need to have Node.js, npm, and MongoDB installed on your machine. You also need to clone or download the project repository from GitHub. Then follow these steps:
 
 1. Navigate to the backend folder and create a .env file with the following variables:
-   - MONGO_URI: The connection string for connecting to MongoDB (e.g., mongodb://localhost:27017/youtube-clone)
+   - MONGO: The connection string for connecting to MongoDB (e.g., mongodb://localhost:27017/youtube-clone)
    - JWT: The secret key for creating and verifying JWTs (e.g., abc123)
 2. Run `npm install` to install all the dependencies for the backend.
 3. Run `npm start` to start the server.
